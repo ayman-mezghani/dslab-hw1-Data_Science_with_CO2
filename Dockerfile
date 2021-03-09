@@ -21,6 +21,8 @@ FROM ${RENKU_BASE_IMAGE}
 COPY requirements.txt environment.yml /tmp/
 RUN conda env update -q -f /tmp/environment.yml && \
     /opt/conda/bin/pip install -r /tmp/requirements.txt && \
+    jupyter labextension install jupyterlab-plotly@4.14.3 && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager plotlywidget@4.14.3 && \
     conda clean -y --all && \
     conda env export -n "root"
 
